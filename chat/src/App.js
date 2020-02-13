@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Auth } from 'pages'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+
+import { Auth, Home } from "pages"
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Auth />
-      </Router>
+      <div className='wrapper'>
+        <Route exact path={["/", '/login']} component={Auth} />
+        <Route exact path="/im" component={Home} />
+      </div>
     );
   }
 }
