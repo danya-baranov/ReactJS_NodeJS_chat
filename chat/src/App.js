@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className='wrapper'>
-        <Route exact path={["/", '/login']} component={Auth} />
+        <Route exact path={["/", '/login', '/register']} component={Auth} />
         <Route exact path="/im" component={Home} />
       </div>
     );
