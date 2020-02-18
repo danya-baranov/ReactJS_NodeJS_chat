@@ -5,3 +5,4 @@ export { default as DialogItem } from './DialogItem';
 export { default as Dialogs } from './Dialogs';
 export { default as Time } from './Time';
 export { default as ReadStatus } from './ReadStatus';
+export { default as Avatar } from './Avatar';
