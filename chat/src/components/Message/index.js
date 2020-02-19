@@ -150,7 +150,7 @@ Message.defaultProps = {
 Message.propTypes = {
     avatar: PropTypes.string,
     text: PropTypes.string,
-    date: PropTypes.string,
+    date: PropTypes.number,
     user: PropTypes.object,
     attachments: PropTypes.array,
     isMe: PropTypes.bool,

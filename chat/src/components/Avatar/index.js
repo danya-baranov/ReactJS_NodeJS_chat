@@ -11,7 +11,7 @@ const Avatar = ({ user }) => {
       <img
         className="avatar"
         src={user.avatar}
-        alt={`Avatar ${user.fullname}`}
+        alt={`Avatar ${user.fullName}`}
       />
     );
   } else {
