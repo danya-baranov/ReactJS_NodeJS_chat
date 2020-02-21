@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { Messages, ChatInput, Status, Button } from 'components'
-import { Dialogs } from "containers"
+import { ChatInput, Status, Button } from 'components'
+import { Dialogs, Messages } from "containers"
 
 import "./Home.scss"
 import { Icon } from 'antd'
-import dialogsJSON from "dialogs.json";
 
 
 const Home = () => (
@@ -23,7 +22,6 @@ const Home = () => (
         <div className="chat__sidebar-dialogs">
           <Dialogs
             userId={0}
-            items={dialogsJSON}
 
           />
         </div>
@@ -35,7 +33,7 @@ const Home = () => (
         <Status online fullName="Гай Юлий Цезарь" />
 
         <div className="chat__dialog-messages">
-         <Messages />
+          <Messages />
 
 
 

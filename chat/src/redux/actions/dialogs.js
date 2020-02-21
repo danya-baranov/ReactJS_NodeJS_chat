@@ -5,8 +5,8 @@ const actions = {
         type: "DIALOGS:SET_ITEMS",
         payload: items
     }),
-    setCurrentDialog: id => ({
-        type: "DIALOGS:SET_CURRENT_DIALOG",
+    setCurrentDialogId: id => ({
+        type: "DIALOGS:SET_CURRENT_DIALOG_ID",
         payload: id
     }),
     fetchDialogs: () => dispatch => {
