@@ -117,6 +117,5 @@ const RegisterForm = props => {
         </div>
     )
 }
-// const WrappedNormalRegisterForm = Form.create({ name: 'normal_login' })(RegisterForm);
 
 export default RegisterForm

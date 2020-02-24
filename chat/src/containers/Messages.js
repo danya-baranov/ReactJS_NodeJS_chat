@@ -6,13 +6,13 @@ import { Messages as BaseMessages } from "components";
 
 const Dialogs = ({ currentDialogId, fetchMessages, items, isLoading }) => {
     const messagesRef = useRef(null);
-    console.log(currentDialogId)
 
     useEffect(() => {
         if (currentDialogId) {
             fetchMessages(currentDialogId);
         }
     }, [currentDialogId]);
+
     useEffect(() => {
         if (messagesRef.current) {
             messagesRef.current.scrollTo(0, 999999);
@@ -25,8 +25,6 @@ const Dialogs = ({ currentDialogId, fetchMessages, items, isLoading }) => {
     );
 };
 
-// 
-// 
 export default connect(
     ({ dialogs, messages }) => ({
         currentDialogId: dialogs.currentDialogId,

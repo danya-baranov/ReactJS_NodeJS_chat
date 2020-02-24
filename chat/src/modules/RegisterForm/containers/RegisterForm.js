@@ -22,10 +22,10 @@ export default withFormik({
 
         return errors
     },
-    handleSubmit: (values, { setSunmitting }) => {
+    handleSubmit: (values, { setSubmitting }) => {
         setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
-            setSunmitting(false);
+            setSubmitting(false);
         }, 1000)
 
     },

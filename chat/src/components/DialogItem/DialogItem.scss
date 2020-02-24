@@ -6,6 +6,15 @@
     $item: &;
     display: flex;
     margin-bottom: 20px;
+    &:hover {
+      background-color: #f3f7ff;
+    }
+
+    &--selected,
+    &--selected:hover {
+      background-color: #1890ff;
+      color: #fff !important;
+    }
     color: $black;
     &--online {
       #{$item}-avatar {
