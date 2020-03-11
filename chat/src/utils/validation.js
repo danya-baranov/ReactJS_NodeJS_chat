@@ -24,7 +24,7 @@ export default ({ isAuth, values, errors }) => {
         },
         fullName: value => {
             if (!isAuth && !value) {
-                errors.fullname = "Укажите свое имя и фамилию";
+                errors.fullName = "Укажите свое имя и фамилию";
             }
         }
     }

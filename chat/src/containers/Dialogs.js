@@ -36,7 +36,7 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
       items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}
-      onSelectDialog={setCurrentDialogId}
+      onSelectDialog={setCurrentDialogId}x
       currentDialogId={currentDialogId}
     />
   );
