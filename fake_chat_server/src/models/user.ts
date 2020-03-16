@@ -41,7 +41,6 @@ export const UserSchema: Schema<IUser> = new Schema({
     last_seen: {
         type: Date,
         default: new Date()
-
     },
 }, {
     timestamps: true,
