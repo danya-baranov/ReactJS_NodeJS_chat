@@ -19,14 +19,14 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
   };
 
 
-  useEffect(() => {
-    if (!items.length) {
-      fetchDialogs();
-    } else {
-      setFiltredItems(items)
-    }
+  // useEffect(() => {
+  //   if (!items.length) {
+  //     fetchDialogs();
+  //   } else {
+  //     setFiltredItems(items)
+  //   }
 
-  }, [fetchDialogs, items])
+  // }, [fetchDialogs, items])
 
 
 

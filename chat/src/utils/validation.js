@@ -2,7 +2,6 @@ export default ({ isAuth, values, errors }) => {
 
     const rules = {
         email: (value) => {
-            console.log(value)
             if (!value) {
                 errors.email = "Input email";
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
@@ -10,11 +9,10 @@ export default ({ isAuth, values, errors }) => {
             }
         },
         password: (value) => {
-            console.log(value)
             if (!value) {
                 errors.password = "Input password";
-            } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(value)) {
-                errors.password = isAuth ? "Wrong credentials" : "Very easy password";
+            } else if ( !isAuth && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(value)) {
+                errors.password = "Very easy password";
             }
         },
         password_2: (value) => {

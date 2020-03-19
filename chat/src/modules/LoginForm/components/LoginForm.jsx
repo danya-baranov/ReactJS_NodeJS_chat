@@ -13,6 +13,8 @@ const LoginForm = props => {
         handleChange,
         handleBlur,
         handleSubmit,
+        isValid,
+        isSubmitting,
     } = props;
 
     return (
@@ -40,7 +42,7 @@ const LoginForm = props => {
                             value={values.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                        /> 
+                        />
                     </Form.Item>
                     <Form.Item
                         validateStatus={
@@ -61,8 +63,15 @@ const LoginForm = props => {
                         />
                     </Form.Item>
                     <Form.Item>
-
-                        <Button onClick={handleSubmit} type='primary' size='large'>Войти в аккаунт</Button>
+                        {isSubmitting && !isValid && <span>Ошибка!</span>}
+                        <Button
+                            disabled={isSubmitting}
+                            onClick={handleSubmit}
+                            type='primary'
+                            size='large'
+                        >
+                            Войти в аккаунт
+                        </Button>
                     </Form.Item>
                     <Link className="auth__register-link" to="/register">Зарегистрироваться</Link>
 

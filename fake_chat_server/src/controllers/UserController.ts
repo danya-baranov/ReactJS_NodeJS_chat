@@ -1,26 +1,47 @@
 import { IUser } from './../models/user';
 import { Response, Request } from 'express'
 import { UserModel } from '../models';
-import { createJWToken } from '../utils';
+import { createJWToken, generatePasswordHash } from '../utils';
+import { validationResult } from 'express-validator';
+import bcrypt from 'bcrypt';
+import socket from "socket.io";
+
 
 class UserController {
-    getUserById(req: Request, res: Response) {
+
+    io: socket.Server;
+
+    constructor(io: socket.Server) {
+        this.io = io;
+    }
+
+
+    getUserById = (req: Request, res: Response) => {
         const id: string = req.params.id
         UserModel.findById(id, (err, user) => {
             if (err) {
                 return res.status(404).json({
-                    massage: "Not Found"
+                    massage: "User Not Found"
                 })
             }
             res.json(user)
         })
     }
 
-    getMe() {
+    getMe = (req: any, res: Response) => {
+        const id: string = req.user._id;
+        console.log(id)
+        UserModel.findById(id, (err, user) => {
+            if (err) {
+                return res.status(404).json({
+                    message: "Users not found",
+                });
+            }
+            res.json(user);
+        });
+    };
 
-    }
-
-    createUser(req: Request, res: Response) {
+    createUser = (req: Request, res: Response) => {
         const postData = {
             email: req.body.email,
             fullName: req.body.fullName,
@@ -34,7 +55,7 @@ class UserController {
         })
     }
 
-    deleteUserById(req: Request, res: Response) {
+    deleteUserById = (req: Request, res: Response) => {
         const id: string = req.params.id
         UserModel.findByIdAndRemove({ _id: id })
             .then(user => {
@@ -50,28 +71,32 @@ class UserController {
             })
     }
 
-    login(req:Request, res: Response){
+    login = (req: Request, res: Response) => {
         const postData = {
-            email:req.body.login,
+            email: req.body.email,
             password: req.body.password
         };
-
-        UserModel.findOne({email: postData.email}, (err, user:IUser) =>{
-            if(err){
-                return res.status(404).json({
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+        UserModel.findOne({ email: postData.email }, (err, user: IUser) => {
+            if (err || !user) {
+                return res.json({
+                    status: "error",
                     message: "User not found"
                 });
             }
 
-            if(user.password === postData.password){
+            if (bcrypt.compareSync(postData.password, user.password as string)) {
                 const token = createJWToken(user);
                 res.json({
-                    status:"succes",
+                    status: "success",
                     token
                 })
-            }else{
+            } else {
                 res.json({
-                    status:"error",
+                    status: "error",
                     message: "Incorrect password or email"
                 })
             }
